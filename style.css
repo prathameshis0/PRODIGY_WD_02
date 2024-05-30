@@ -6,7 +6,7 @@ body{
 .stopwatch{
     width: 1600px;
     max-width: 860px;
-    background-image: linear-gradient(rgba(0,0,0,-1.2),rgba(0,0,0,-0.2)),url(image/bg.PNG);
+    background-image: linear-gradient(rgba(0,0,0,-1.2),rgba(0,0,0,-0.2)),url(bg.PNG);
     background-size: cover;
     background-position: center;  
     text-align: center;
