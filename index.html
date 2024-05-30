@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stopwatch">
+        <h1 id="displayTime">00:00:00</h1>
+        <div class="buttons">
+            <img src="image/pic2.PNG" onclick="watchreset()">
+            <img src="image/pic1.PNG" onclick="watchstart()", ondblclick="lap()" >
+            <img src="image/pic3.PNG" onclick="stop()">
+        </div>
+        <div id="lapbox"><ul id="laps"></ul></div>
+    </div>
+    <script>
+        let [seconds,minutes,hours]=[0,0,0];
+        let displayTime=document.getElementById("displayTime");
+        let timer=null;
+        let ul=document.getElementById("laps");
+        const stopwatch=()=>{
+            seconds++;
+            if(seconds==60){
+                seconds=0;
+                minutes++;
+                if(minutes==60){
+                    minutes=0;
+                    hours++;
+                }
+            }
+            let h=hours<10 ? "0"+hours:hours;
+            let m=minutes<10 ? "0"+minutes:minutes;
+            let s=seconds<10 ? "0"+seconds:seconds;
+            displayTime.innerHTML=h+":"+m+":"+s;
+        }
+        const watchstart=()=>{
+            if(timer!=null){
+            clearInterval(timer);
+            }
+            timer=setInterval(stopwatch,100);
+        }
+        const stop=()=>{
+            clearInterval(timer);
+        }
+        const watchreset=()=>{
+            clearInterval(timer);
+            [seconds,minutes,hours]=[0,0,0];
+            displayTime.innerHTML="00:00:00";
+            ul.innerHTML=" "
+             
+        }
+        const lap=(i)=>{
+            let li=document.createElement("li");
+            li.setAttribute("class","lap");
+            li.innerHTML="Lap "+(hours<10 ? "0"+hours:hours)+":"+(minutes<10 ? "0"+minutes:minutes)+":"+(seconds<10 ? "0"+seconds:seconds)
+            ul.appendChild(li);
+            
+        }
+    </script>
+</body>
+</html>
